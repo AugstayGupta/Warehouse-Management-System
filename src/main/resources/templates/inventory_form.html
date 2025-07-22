@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${inventory.id != null} ? 'Edit Inventory' : 'Add Inventory'">Inventory Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/products}">Products</a></li>
+            <li><a th:href="@{/suppliers}">Suppliers</a></li>
+            <li><a th:href="@{/inventory}">Inventory</a></li>
+            <li><a th:href="@{/orders}">Orders</a></li>
+            <li><a th:href="@{/users}">Users</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="center">
+        <h1 th:text="${inventory.id != null} ? 'Edit Inventory' : 'Add Inventory'"></h1>
+        <form th:action="@{${inventory.id != null} ? '/inventory/edit/' + ${inventory.id} : '/inventory/add'}" th:object="${inventory}" method="post">
+            <label>Product:</label>
+            <select th:field="*{product.id}" required>
+                <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}" th:selected="${product.id == inventory.product?.id}"></option>
+            </select><br/>
+            <label>Quantity:</label>
+            <input type="number" th:field="*{quantity}" required/><br/>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html> 

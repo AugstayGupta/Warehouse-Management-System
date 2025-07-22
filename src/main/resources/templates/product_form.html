@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${product.id != null} ? 'Edit Product' : 'Add Product'">Product Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/products}">Products</a></li>
+            <li><a th:href="@{/suppliers}">Suppliers</a></li>
+            <li><a th:href="@{/inventory}">Inventory</a></li>
+            <li><a th:href="@{/orders}">Orders</a></li>
+            <li><a th:href="@{/users}">Users</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="center">
+        <h1 th:text="${product.id != null} ? 'Edit Product' : 'Add Product'"></h1>
+        <form th:action="@{${product.id != null} ? '/products/edit/' + ${product.id} : '/products/add'}" th:object="${product}" method="post">
+            <label>Name:</label>
+            <input type="text" th:field="*{name}" required/><br/>
+            <label>Description:</label>
+            <input type="text" th:field="*{description}"/><br/>
+            <label>Supplier:</label>
+            <select th:field="*{supplier.id}" required>
+                <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.name}" th:selected="${supplier.id == product.supplier?.id}"></option>
+            </select><br/>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html> 

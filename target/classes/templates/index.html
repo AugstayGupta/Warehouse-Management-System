@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Warehouse Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin: 40px 0 0 0;
+        }
+        .feature-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(33,150,243,0.07);
+            padding: 28px 24px;
+            width: 260px;
+            text-align: center;
+            animation: fadeInUp 1.2s;
+        }
+        .feature-card i {
+            font-size: 2.5em;
+            color: #00bcd4;
+            margin-bottom: 12px;
+            animation: fadeIn 1.5s;
+        }
+        .feature-card h3 {
+            margin: 10px 0 8px 0;
+            color: #1976d2;
+        }
+        .feature-card p {
+            color: #555;
+            font-size: 1em;
+        }
+        .hero-img {
+            width: 320px;
+            max-width: 90vw;
+            margin: 32px auto 0 auto;
+            display: block;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(33,150,243,0.10);
+            animation: fadeIn 1.5s;
+        }
+        .cta {
+            margin: 40px auto 0 auto;
+            text-align: center;
+            animation: fadeInUp 1.5s;
+        }
+        .cta button {
+            padding: 16px 36px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #00bcd4 0%, #2196f3 100%);
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(33,150,243,0.08);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .cta button:hover {
+            background: linear-gradient(90deg, #2196f3 0%, #00bcd4 100%);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png" alt="Warehouse Logo"/>
+        <h1>Warehouse Management System</h1>
+        <p>Efficiently manage your products, inventory, suppliers, and orders</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}"><i class="fa fa-home"></i> Home</a></li>
+            <li><a th:href="@{/products}"><i class="fa fa-box"></i> Products</a></li>
+            <li><a th:href="@{/suppliers}"><i class="fa fa-truck"></i> Suppliers</a></li>
+            <li><a th:href="@{/inventory}"><i class="fa fa-warehouse"></i> Inventory</a></li>
+            <li><a th:href="@{/orders}"><i class="fa fa-clipboard-list"></i> Orders</a></li>
+            <li><a th:href="@{/users}"><i class="fa fa-users"></i> Users</a></li>
+            <li><a th:href="@{/logout}"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <img class="hero-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Warehouse"/>
+    <div class="features">
+        <div class="feature-card">
+            <i class="fa fa-box"></i>
+            <h3>Product Management</h3>
+            <p>Add, edit, and organize your warehouse products with ease.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa fa-warehouse"></i>
+            <h3>Inventory Tracking</h3>
+            <p>Monitor stock levels and movements in real time.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa fa-truck"></i>
+            <h3>Supplier Management</h3>
+            <p>Keep your supplier information up to date and accessible.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa fa-clipboard-list"></i>
+            <h3>Order Processing</h3>
+            <p>Receive and ship orders efficiently with full traceability.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa fa-users"></i>
+            <h3>User Roles</h3>
+            <p>Admin and staff roles for secure, role-based access.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa fa-chart-bar"></i>
+            <h3>Reporting</h3>
+            <p>Generate inventory and order reports for better decisions.</p>
+        </div>
+    </div>
+    <div class="cta">
+        <h2>Ready to streamline your warehouse?</h2>
+        <a th:href="@{/products}"><button><i class="fa fa-arrow-right"></i> Get Started</button></a>
+    </div>
+</body>
+</html> 

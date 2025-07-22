@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - Warehouse Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        body.login-bg {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(0,188,212,0.7), rgba(33,150,243,0.7)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            background: rgba(255,255,255,0.97);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(33,150,243,0.12);
+            max-width: 400px;
+            margin: 60px auto 0 auto;
+            padding: 36px 32px 32px 32px;
+            text-align: center;
+            animation: fadeInUp 1.2s;
+        }
+        .login-card img {
+            width: 90px;
+            margin-bottom: 18px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(33,150,243,0.10);
+            animation: fadeIn 1.2s;
+        }
+        .login-card h1 {
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            color: #1976d2;
+            margin-bottom: 18px;
+            font-size: 2em;
+        }
+        .login-card form {
+            margin-top: 18px;
+        }
+        .login-card label {
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            color: #1976d2;
+            font-weight: 500;
+            display: block;
+            margin-top: 16px;
+            text-align: left;
+        }
+        .login-card input[type="text"],
+        .login-card input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #b3e5fc;
+            border-radius: 6px;
+            background: #f7fbfd;
+            font-size: 1em;
+            font-family: 'Roboto', Arial, sans-serif;
+            transition: border 0.2s;
+        }
+        .login-card input:focus {
+            border: 1.5px solid #00bcd4;
+            outline: none;
+        }
+        .login-card button {
+            margin-top: 24px;
+            padding: 12px 28px;
+            background: linear-gradient(90deg, #00bcd4 0%, #2196f3 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(33,150,243,0.08);
+            transition: background 0.2s, transform 0.2s;
+            animation: fadeIn 1.2s;
+        }
+        .login-card button:hover {
+            background: linear-gradient(90deg, #2196f3 0%, #00bcd4 100%);
+            transform: scale(1.05);
+        }
+        .login-card .login-message {
+            margin-top: 18px;
+            color: #e53935;
+            font-size: 1.1em;
+            animation: fadeIn 1.2s;
+        }
+        .login-card .login-success {
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body class="login-bg">
+    <div class="login-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png" alt="Warehouse Login"/>
+        <h1><i class="fa fa-warehouse"></i> WMS Login</h1>
+        <form th:action="@{/login}" method="post">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required/>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required/>
+            <button type="submit"><i class="fa fa-sign-in-alt"></i> Login</button>
+        </form>
+        <div th:if="${param.error}" class="login-message">
+            <i class="fa fa-exclamation-circle"></i> Invalid username or password.
+        </div>
+        <div th:if="${param.logout}" class="login-message login-success">
+            <i class="fa fa-check-circle"></i> You have been logged out.
+        </div>
+    </div>
+</body>
+</html> 

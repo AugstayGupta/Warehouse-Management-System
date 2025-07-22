@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inventory - Warehouse Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}"><i class="fa fa-home"></i> Home</a></li>
+            <li><a th:href="@{/products}"><i class="fa fa-box"></i> Products</a></li>
+            <li><a th:href="@{/suppliers}"><i class="fa fa-truck"></i> Suppliers</a></li>
+            <li><a th:href="@{/inventory}"><i class="fa fa-warehouse"></i> Inventory</a></li>
+            <li><a th:href="@{/orders}"><i class="fa fa-clipboard-list"></i> Orders</a></li>
+            <li><a th:href="@{/users}"><i class="fa fa-users"></i> Users</a></li>
+            <li><a th:href="@{/logout}"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <div class="center card">
+        <h1><i class="fa fa-warehouse"></i> Inventory</h1>
+        <a th:href="@{/inventory/add}"><button><i class="fa fa-plus"></i> Add Inventory</button></a>
+        <div th:if="${message}" th:text="${message}" class="div-message"></div>
+        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png" alt="Warehouse" style="width:80px;margin:20px auto;display:block;animation:fadeIn 1.2s;"/>
+        <table style="animation:fadeInUp 1.2s;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${inventory}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.product != null ? item.product.name : 'N/A'}"></td>
+                    <td th:text="${item.quantity}"></td>
+                    <td>
+                        <a th:href="@{'/inventory/edit/' + ${item.id}}"><i class="fa fa-edit"></i> Edit</a> |
+                        <a th:href="@{'/inventory/delete/' + ${item.id}}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> 

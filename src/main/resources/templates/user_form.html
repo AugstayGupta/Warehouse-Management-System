@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${user.id != null} ? 'Edit User' : 'Add User'">User Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/products}">Products</a></li>
+            <li><a th:href="@{/suppliers}">Suppliers</a></li>
+            <li><a th:href="@{/inventory}">Inventory</a></li>
+            <li><a th:href="@{/orders}">Orders</a></li>
+            <li><a th:href="@{/users}">Users</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="center">
+        <h1 th:text="${user.id != null} ? 'Edit User' : 'Add User'"></h1>
+        <form th:action="@{${user.id != null} ? '/users/edit/' + ${user.id} : '/users/add'}" th:object="${user}" method="post">
+            <label>Username:</label>
+            <input type="text" th:field="*{username}" required/><br/>
+            <label>Password:</label>
+            <input type="password" th:field="*{password}" th:placeholder="${user.id != null} ? 'Leave blank to keep current' : ''"/><br/>
+            <label>Role:</label>
+            <select th:field="*{role}" required>
+                <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">ADMIN</option>
+                <option value="STAFF" th:selected="${user.role == 'STAFF'}">STAFF</option>
+            </select><br/>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html> 

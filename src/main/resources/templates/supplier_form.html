@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${supplier.id != null} ? 'Edit Supplier' : 'Add Supplier'">Supplier Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/products}">Products</a></li>
+            <li><a th:href="@{/suppliers}">Suppliers</a></li>
+            <li><a th:href="@{/inventory}">Inventory</a></li>
+            <li><a th:href="@{/orders}">Orders</a></li>
+            <li><a th:href="@{/users}">Users</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="center">
+        <h1 th:text="${supplier.id != null} ? 'Edit Supplier' : 'Add Supplier'"></h1>
+        <form th:action="@{${supplier.id != null} ? '/suppliers/edit/' + ${supplier.id} : '/suppliers/add'}" th:object="${supplier}" method="post">
+            <label>Name:</label>
+            <input type="text" th:field="*{name}" required/><br/>
+            <label>Contact:</label>
+            <input type="text" th:field="*{contact}"/><br/>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html> 

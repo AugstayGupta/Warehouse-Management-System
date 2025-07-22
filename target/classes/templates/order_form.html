@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${order.id != null} ? 'Edit Order' : 'Add Order'">Order Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/products}">Products</a></li>
+            <li><a th:href="@{/suppliers}">Suppliers</a></li>
+            <li><a th:href="@{/inventory}">Inventory</a></li>
+            <li><a th:href="@{/orders}">Orders</a></li>
+            <li><a th:href="@{/users}">Users</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="center">
+        <h1 th:text="${order.id != null} ? 'Edit Order' : 'Add Order'"></h1>
+        <form th:action="@{${order.id != null} ? '/orders/edit/' + ${order.id} : '/orders/add'}" th:object="${order}" method="post">
+            <label>Product:</label>
+            <select th:field="*{product.id}" required>
+                <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}" th:selected="${product.id == order.product?.id}"></option>
+            </select><br/>
+            <label>Quantity:</label>
+            <input type="number" th:field="*{quantity}" required/><br/>
+            <label>Order Type:</label>
+            <select th:field="*{orderType}" required>
+                <option value="RECEIVE" th:selected="${order.orderType == 'RECEIVE'}">RECEIVE</option>
+                <option value="SHIP" th:selected="${order.orderType == 'SHIP'}">SHIP</option>
+            </select><br/>
+            <label>Order Date:</label>
+            <input type="datetime-local" th:field="*{orderDate}"/><br/>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html> 
